@@ -14,16 +14,17 @@
      
     </b-thead>
     <b-tbody>
-      <b-tr>
-        <b-th colspan="3">Apple</b-th>
+      <b-tr v-for="product in items" v-bind:key="product">
+        <b-th colspan="3">{{product.product}}</b-th>
         
-        <b-td colspan='2'>20</b-td>
+        <b-td colspan='2'>{{product.price}}</b-td>
         <b-td colspan='2'> 
-          <b-button pill>-</b-button>  3
+          <b-button pill>-</b-button>  
+          {{product.quantity}}
           <b-button pill variant="primary">+</b-button
         ></b-td>
        
-        <b-td variant="success">60</b-td>
+        <b-td variant="success">{{product.cost}}</b-td>
       </b-tr>
     </b-tbody>
     <b-tfoot>
@@ -95,10 +96,10 @@
          // Note `isActive` is left out and will not appear in the rendered table
         fields: ['product', 'price', 'quantity', 'cost' ],
          items: [
-          { product: 'Apple', price: 3, quantity: 1, cost: 1 },
-          { product: 'Banana', price: 4, quantity: 1, cost: 1 },
-          { product: 'shit', price: 5, quantity: 2, cost: 1 },
-          { product: 'Kitkat', price: 6, quantity: 3, cost: 1 }
+          { product: 'Apple', price: 3, quantity: 1, cost: 3 },
+          { product: 'Banana', price: 4, quantity: 1, cost: 4 },
+          { product: 'shit', price: 5, quantity: 2, cost: 10 },
+          { product: 'Kitkat', price: 6, quantity: 3, cost: 12 }
         ],
 
         orders: {
