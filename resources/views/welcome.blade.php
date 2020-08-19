@@ -14,9 +14,8 @@
 <div id="app">
     <p>asda</p>
     <example></example>
-    <!-- <welcome></welcome> -->
-    <Forms></Forms>
-    <VueForms></VueForms>
+    <welcome></welcome>
+  
   </div>
 <script src="{{ asset('js/app.js') }}"></script>
   
