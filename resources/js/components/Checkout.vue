@@ -1,6 +1,43 @@
 <template>
   <div>
-  <p>forms</p>
+  <h1>POS</h1>
+  <h3>Cashier</h3>
+  <div>
+    <b-table-simple :borderless="borderless" :items="items">
+    <b-thead head-variant="dark">
+      <b-tr>
+        <b-th colspan="2">Products</b-th>
+        <b-th colspan="3">Price(RM)</b-th>
+        <b-th colspan="2">Quantity</b-th>
+        <b-th colspan="2">Cost(RM)</b-th>
+      </b-tr>
+     
+    </b-thead>
+    <b-tbody>
+      <b-tr>
+        <b-th colspan="3">Apple</b-th>
+        
+        <b-td colspan='2'>20</b-td>
+        <b-td colspan='2'> 
+          <b-button pill>-</b-button>  3
+          <b-button pill variant="primary">+</b-button
+        ></b-td>
+       
+        <b-td variant="success">60</b-td>
+      </b-tr>
+    </b-tbody>
+    <b-tfoot>
+      <b-tr>
+        <b-td colspan="7" variant="secondary" class="text-right">
+          Total Rows: <b>5</b>
+        </b-td>
+      </b-tr>
+    </b-tfoot>
+    
+    </b-table-simple>
+  </div>
+   <b-button pill>- </b-button>
+  <b-button pill variant="primary">+ </b-button>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="input-group-1"
@@ -42,8 +79,8 @@
         </b-form-checkbox-group>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+       <b-button type="reset" variant="danger">Cancel</b-button>
+      <b-button type="submit" variant="primary">Check Out</b-button>
     </b-form>
     <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
@@ -55,6 +92,26 @@
   export default {
     data() {
       return {
+         // Note `isActive` is left out and will not appear in the rendered table
+        fields: ['product', 'price', 'quantity', 'cost' ],
+         items: [
+          { product: 'Apple', price: 3, quantity: 1, cost: 1 },
+          { product: 'Banana', price: 4, quantity: 1, cost: 1 },
+          { product: 'shit', price: 5, quantity: 2, cost: 1 },
+          { product: 'Kitkat', price: 6, quantity: 3, cost: 1 }
+        ],
+
+        orders: {
+          product: '',
+          price: '',
+          quantity: '',
+          total_unit_cost: '',
+          subtotal: '',
+          no_items: '',
+          tax: '',
+          service_charge: '',
+          total: ''
+        },
         form: {
           email: '',
           name: '',
