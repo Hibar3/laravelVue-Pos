@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Api paths
+Route::get('/order','OrderController@all');
+Route::get('/order/{id}','OrderController@show');
+Route::post('/order','OrderController@store');
+Route::put('/order/{id}','OrderController@update');
+Route::delete('/order/{id}','OrderController@delete');
