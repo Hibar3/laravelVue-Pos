@@ -9,42 +9,44 @@ use Faker\Generator;
 
 class OrderController extends Controller
 {
-    // public function index()
-    // {
-    //     return response(Order::all()->jsonSerialize(), Response::HTTP_OK);
-    // }
+    public function index()
+    {
+        return response(Order::all()->jsonSerialize(), Response::HTTP_OK);
+    }
 
     public function all()
     {
         return Order::all();
     }
 
-    // mengambil data by id
+    // Show data by id //GET
     public function show($id)
     {
         return Order::find($id);
     }
 
-    // menambah data
+    // Add data //POST
     public function store(Request $request)
     {
-        return Order::create($request->all());
+        $order = Order::create($request->all());
+        $returnData = $order->find($order->id)->toArray(); // retrun all data of current row
+        return response()->json( $returnData, Response::HTTP_CREATED);
     }
 
-    // mengubah data
+    // Update data //PUT
     public function update($id, Request $request)
     {
         $order = Order::find($id);
         $order->update($request->all());
-        return $order;
+        return response()->json($order, Response::HTTP_OK);
     }
 
-    // menghapus data
+    // delete data //DEL
     public function delete($id)
     {
-        $person = Order::find($id);
-        $person->delete();
-        return 204;
+        $order = Order::find($id);
+        $order->delete();
+        return response()->json(null, Response::HTTP_OK);
     }
 
 }
